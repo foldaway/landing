@@ -1,7 +1,7 @@
 import React from 'react';
 
+import Footer from '../components/Footer';
 import Header from '../components/Header';
-import config from '../config';
 
 const Layout: React.FC = function(props) {
   const { children } = props;
@@ -10,9 +10,7 @@ const Layout: React.FC = function(props) {
     <>
       <Header />
       <main>{children}</main>
-      <footer>
-        &copy; {new Date().getFullYear()} {config.siteMetadata.title}
-      </footer>
+      <Footer />
     </>
   );
 };

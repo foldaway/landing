@@ -15,6 +15,14 @@ export const SectionHeading = styled.h1`
   margin: 0 0 8px;
 `;
 
+export const SectionBody = styled.p`
+  margin-top: 0;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+`;
+
 export const SeeMore = styled(Link)`
   display: block;
   width: 100%;
