@@ -28,5 +28,6 @@ module.exports = {
 
   env: {
     URL: process.env.URL,
+    GITHUB_API_TOKEN: process.env.GITHUB_API_TOKEN,
   },
 };

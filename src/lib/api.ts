@@ -1,3 +1,5 @@
+const API_URL = 'https://api.github.com/graphql';
+
 const repoFields = `
 fragment repoFields on Repository {
   id
@@ -57,3 +59,5 @@ query {
   }
 }
 `;
+
+export {};
