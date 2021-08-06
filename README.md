@@ -1,5 +1,5 @@
-# next-base
-[![Netlify Status](https://api.netlify.com/api/v1/badges/89720d2e-59d9-4567-97da-da2fa26a8cd9/deploy-status)](https://app.netlify.com/sites/next-base/deploys)
+# landing
+[![Netlify Status](https://api.netlify.com/api/v1/badges/744c7980-7a7c-4642-bc4e-7ebd7ffe83f0/deploy-status)](https://app.netlify.com/sites/fch-landing/deploys)
 
 ### Developing
 ```shell
