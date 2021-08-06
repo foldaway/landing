@@ -59,3 +59,5 @@ query {
   }
 }
 `;
+
+export {};
