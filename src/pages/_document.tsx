@@ -27,8 +27,8 @@ export default class MyDocument extends Document {
     return (
       <Html>
         {
-          //@ts-ignore
           <Head>
+            {/* @ts-ignore */}
             {this.props.styleTags}
             <link rel="preconnect" href="https://fonts.googleapis.com" />
             <link
