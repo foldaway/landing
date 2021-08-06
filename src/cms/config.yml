@@ -1,0 +1,73 @@
+backend:
+  name: github
+  branch: main
+  repo: fourthclasshonours/landing
+  auth_endpoint: api/cms-auth
+  use_graphql: true
+
+media_folder: public/images
+public_folder: /images
+
+local_backend: true
+
+collections:
+  - name: 'site_configuration'
+    label: 'Site Configuration'
+    folder: 'content/site_configuration'
+    create: false
+    extension: 'mdx'
+    format: 'frontmatter'
+    fields:
+      - label: 'Title'
+        name: 'title'
+        widget: 'string'
+      - label: 'Menu Items'
+        name: 'menu_items'
+        widget: 'list'
+        fields:
+          - label: 'name'
+            name: 'name'
+            widget: 'string'
+          - label: 'link'
+            name: 'link'
+            widget: 'string'
+          - label: 'Children'
+            name: 'children'
+            widget: 'list'
+            fields:
+              - label: 'name'
+                name: 'name'
+                widget: 'string'
+              - label: 'link'
+                name: 'link'
+                widget: 'string'
+              - label: 'Children'
+                name: 'children'
+                widget: 'list'
+                fields:
+                  - label: 'name'
+                    name: 'name'
+                    widget: 'string'
+                  - label: 'link'
+                    name: 'link'
+                    widget: 'string'
+  - name: 'post'
+    label: 'Post'
+    folder: 'content/post'
+    create: true
+    extension: 'mdx'
+    format: 'frontmatter'
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    fields:
+      - label: 'title'
+        name: 'title'
+        widget: 'string'
+      - label: 'Content'
+        name: 'content'
+        widget: 'markdown'
+      - label: 'Published Date'
+        name: 'pub_date'
+        widget: 'datetime'
+      - label: 'Author'
+        name: 'author'
+        widget: 'string'

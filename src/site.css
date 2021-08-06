@@ -1,0 +1,13 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+}
+
+body {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+}
