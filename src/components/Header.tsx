@@ -31,7 +31,7 @@ const StyledLink = styled(Link)`
   }
 
   &:hover {
-    opacity: 0.5;
+    text-decoration: underline;
   }
 `;
 

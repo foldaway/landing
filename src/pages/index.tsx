@@ -53,7 +53,7 @@ const HomePage: React.FC<CMSContextWrapperProps> = function(props) {
           />
           <SeeMore href="/projects">↙see more projects</SeeMore>
         </Section>
-        <Section>
+        <Section id="people">
           <SectionHeading>People</SectionHeading>
           {/* list members */}
           <Member
@@ -78,7 +78,7 @@ const HomePage: React.FC<CMSContextWrapperProps> = function(props) {
             }}
           />
         </Section>
-        <Section>
+        <Section id="about">
           <SectionHeading>About</SectionHeading>
           <SectionBody>
             Magna enim risus tincidunt pellentesque bibendum at non nibh. Rutrum
