@@ -16,4 +16,13 @@ declare namespace CMS {
     pub_date: string;
     author: string;
   }
+
+  interface Member {
+    name: string;
+    login: string;
+    url: string;
+    avatarUrl: string;
+    websiteUrl?: string;
+    location?: string;
+  }
 }
