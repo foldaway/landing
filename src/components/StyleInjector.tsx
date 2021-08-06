@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheetManager, ThemeProvider } from 'styled-components';
 
-import theme from '../theme';
+import theme from '../styles/theme';
 
 const StyleInjector: React.FC = function({ children }) {
   const [iframeRef, setIframeRef] = useState(null);

@@ -8,6 +8,8 @@ const Wrapper = styled.header`
   flex-flow: row wrap;
 
   width: 100%;
+  font-family: ${props => props.theme.secondary};
+  font-style: italic;
 `;
 
 interface Props {
@@ -19,7 +21,10 @@ const Header: React.FC<Props> = function(props) {
 
   return (
     <Wrapper>
-      <span>{title}</span>
+      <img src="/logo.png" />
+      <span>Projects</span>
+      <span>People</span>
+      <span>About</span>
     </Wrapper>
   );
 };
