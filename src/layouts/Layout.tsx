@@ -8,13 +8,11 @@ const Layout: React.FC = function(props) {
 
   return (
     <>
-      <Header title={config.siteMetadata.title} />
-      <div>
-        <main>{children}</main>
-        <footer>
-          &copy; {new Date().getFullYear()} {config.siteMetadata.title}
-        </footer>
-      </div>
+      <Header />
+      <main>{children}</main>
+      <footer>
+        &copy; {new Date().getFullYear()} {config.siteMetadata.title}
+      </footer>
     </>
   );
 };

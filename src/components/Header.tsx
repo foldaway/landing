@@ -9,6 +9,7 @@ const Wrapper = styled.header`
   grid-template-columns: 1fr 1fr;
   align-items: center;
   width: 100%;
+  margin-bottom: 50px;
   padding: 30px 0 20px;
   border-bottom: 1px solid ${props => props.theme.colors.primary};
   font-family: ${props => props.theme.secondary};

@@ -1,12 +1,13 @@
 import { GetStaticProps } from 'next';
-import Link from 'next/link';
 import React from 'react';
 
 import CMSContextWrapper, {
   CMSContextWrapperProps,
 } from '../cms/CMSContextWrapper';
 import { readCMSContextWrapperProps } from '../cms/util';
+import Project from '../components/Project';
 import SEO from '../components/SEO';
+import { Section, SectionHeading, SeeMore } from '../components/styled';
 import Layout from '../layouts/Layout';
 
 const HomePage: React.FC<CMSContextWrapperProps> = function(props) {
@@ -14,11 +15,45 @@ const HomePage: React.FC<CMSContextWrapperProps> = function(props) {
     <CMSContextWrapper {...props}>
       <Layout>
         <SEO title="Fourth Class Honours" />
-        <h1>Featured Projects</h1>
-        {/* showcase pinned repos */}
-        <Link href="/projects">See more</Link>
-        <h1>Members</h1>
-        {/* list members */}
+        <Section>
+          <SectionHeading>Featured Projects</SectionHeading>
+          <Project
+            project={{
+              title: 'sg-scraper',
+              description:
+                'Vitae consectetur mauris non dictum felis ridiculus',
+              url: 'https://github.com/fourthclasshonours/sg-scraper',
+            }}
+            index={1}
+          />
+          <Project
+            project={{
+              title: 'sg-scraper',
+              description:
+                'Vitae consectetur mauris non dictum felis ridiculus',
+              url: 'https://github.com/fourthclasshonours/sg-scraper',
+            }}
+            index={2}
+          />
+          <Project
+            project={{
+              title: 'sg-scraper',
+              description:
+                'Vitae consectetur mauris non dictum felis ridiculus',
+              url: 'https://github.com/fourthclasshonours/sg-scraper',
+            }}
+            index={3}
+          />
+          {/* showcase pinned repos */}
+          <SeeMore href="/projects">↙see more projects</SeeMore>
+        </Section>
+        <Section>
+          <SectionHeading>People</SectionHeading>
+          {/* list members */}
+        </Section>
+        <Section>
+          <SectionHeading>About</SectionHeading>
+        </Section>
       </Layout>
     </CMSContextWrapper>
   );
