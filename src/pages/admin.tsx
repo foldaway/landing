@@ -3,8 +3,6 @@ import { RouterContext } from 'next/dist/next-server/lib/router-context';
 import React, { useLayoutEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
-import siteCSS from '!url-loader!../site.css';
-
 import config from '../cms/config.yml';
 import ErrorFallback from '../cms/ErrorFallback';
 import SEO from '../components/SEO';
@@ -59,8 +57,6 @@ const NetlifyCMSPage: React.FC = function() {
           },
         },
       });
-
-      CMS.registerPreviewStyle(siteCSS);
     }
 
     setup();
