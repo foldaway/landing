@@ -4,6 +4,7 @@ async function fetchAPI(query: string) {
   const headers = { 'Content-Type': 'application/json' };
 
   if (process.env.GITHUB_API_TOKEN) {
+    //@ts-ignore
     headers['Authorization'] = `Bearer ${process.env.GITHUB_API_TOKEN}`;
   }
   const res = await fetch(API_URL, {
