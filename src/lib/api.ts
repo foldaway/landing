@@ -1,6 +1,6 @@
 const API_URL = 'https://api.github.com/graphql';
 
-async function fetchAPI(query: string, { variables } = {}) {
+async function fetchAPI(query: string) {
   const headers = { 'Content-Type': 'application/json' };
 
   if (process.env.GITHUB_API_TOKEN) {
@@ -11,7 +11,6 @@ async function fetchAPI(query: string, { variables } = {}) {
     headers,
     body: JSON.stringify({
       query,
-      variables,
     }),
   });
 
@@ -84,18 +83,18 @@ query {
 `;
 
 export async function getHomePageContent() {
-  const data = (await fetchAPI(homePageQuery, { variables: {} }))[
-    'organization'
-  ];
+  const data = (await fetchAPI(homePageQuery))['organization'];
 
   const itemShowcaseEdges = data['itemShowcase']['items']['edges'];
   const itemShowcaseSanitized: Array<CMS.Project> = itemShowcaseEdges.map(
-    edge => edge['node']
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (edge: { [x: string]: any }) => edge['node']
   );
 
   const membersWithRoleEdges = data['membersWithRole']['edges'];
   const membersWithRoleSanitized: Array<CMS.Member> = membersWithRoleEdges.map(
-    edge => edge['node']
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (edge: { [x: string]: any }) => edge['node']
   );
 
   return {
@@ -105,15 +104,14 @@ export async function getHomePageContent() {
 }
 
 export async function getAllProjects() {
-  const data = (await fetchAPI(projectsPageQuery, { variables: {} }))[
-    'organization'
-  ];
+  const data = (await fetchAPI(projectsPageQuery))['organization'];
   const projectsEdges = data['repositories']['edges'];
   const projectsSanitized: Array<CMS.Project> = projectsEdges.map(
-    edge => edge['node']
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (edge: { [x: string]: any }) => edge['node']
   );
 
   return {
     projects: projectsSanitized,
-  }
+  };
 }
