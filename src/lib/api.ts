@@ -1,10 +1,11 @@
 const API_URL = 'https://api.github.com/graphql';
 
 async function fetchAPI(query: string) {
-  const headers = { 'Content-Type': 'application/json' };
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+  };
 
   if (process.env.GITHUB_API_TOKEN) {
-    //@ts-ignore
     headers['Authorization'] = `Bearer ${process.env.GITHUB_API_TOKEN}`;
   }
   const res = await fetch(API_URL, {
