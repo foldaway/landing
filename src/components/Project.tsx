@@ -78,26 +78,19 @@ const Description = styled.span`
 
 interface Props {
   index: number;
-  project: {
-    title: string;
-    description: string;
-    url: string;
-  };
+  project: GraphQL.Project;
 }
 
 const Project: React.FC<Props> = function(props) {
-  const {
-    index,
-    project: { title, description, url },
-  } = props;
+  const { index, project } = props;
   return (
-    <Wrapper href={url} target="_blank" rel="noopener noreferrer">
+    <Wrapper href={project.url} target="_blank" rel="noopener noreferrer">
       <Index>{('0' + index).slice(-2)}</Index>
       <Title>
-        {title}
+        {project.name || ''}
         <Arrow>↗</Arrow>
       </Title>
-      <Description>{description}</Description>
+      <Description>{project.description}</Description>
     </Wrapper>
   );
 };
