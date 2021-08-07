@@ -15,40 +15,29 @@ import { getHomePageContent } from '../lib/api';
 
 interface IndexProps {
   members: CMS.Member[];
+  itemShowcase: CMS.Project[];
 }
 
 const HomePage: React.FC<IndexProps> = function(props) {
-  const { members } = props;
+  const { itemShowcase, members } = props;
+
   return (
     <Layout>
       <SEO title="Fourth Class Honours" />
       <Section>
         <SectionHeading>Featured Projects</SectionHeading>
         {/* showcase pinned repos */}
-        <Project
-          project={{
-            title: 'sg-scraper',
-            description: 'Vitae consectetur mauris non dictum felis ridiculus',
-            url: 'https://github.com/fourthclasshonours/sg-scraper',
-          }}
-          index={1}
-        />
-        <Project
-          project={{
-            title: 'sg-scraper',
-            description: 'Vitae consectetur mauris non dictum felis ridiculus',
-            url: 'https://github.com/fourthclasshonours/sg-scraper',
-          }}
-          index={2}
-        />
-        <Project
-          project={{
-            title: 'sg-scraper',
-            description: 'Vitae consectetur mauris non dictum felis ridiculus',
-            url: 'https://github.com/fourthclasshonours/sg-scraper',
-          }}
-          index={3}
-        />
+        {itemShowcase.map((project, index) => (
+          <Project
+            key={project.id}
+            project={{
+              title: project.name,
+              description: project.description || '',
+              url: project.url,
+            }}
+            index={index}
+          />
+        ))}
         <SeeMore href="/projects">↙see more projects</SeeMore>
       </Section>
       <Section id="people">

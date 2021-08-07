@@ -25,4 +25,12 @@ declare namespace CMS {
     websiteUrl?: string;
     location?: string;
   }
+
+  interface Project {
+    id: string;
+    name: string;
+    created_at: string;
+    url: string;
+    description?: string;
+  }
 }

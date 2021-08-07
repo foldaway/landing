@@ -6,7 +6,6 @@ async function fetchAPI(query: string, { variables } = {}) {
   if (process.env.GITHUB_API_TOKEN) {
     headers['Authorization'] = `Bearer ${process.env.GITHUB_API_TOKEN}`;
   }
-  console.log('hello1');
   const res = await fetch(API_URL, {
     method: 'POST',
     headers,
@@ -89,8 +88,10 @@ export async function getHomePageContent() {
     'organization'
   ];
 
-  const itemShowcaseEdges: Array<any> = data['itemShowcase']['items']['edges'];
-  const itemShowcaseSanitized = itemShowcaseEdges.map(edge => edge['node']);
+  const itemShowcaseEdges = data['itemShowcase']['items']['edges'];
+  const itemShowcaseSanitized: Array<CMS.Project> = itemShowcaseEdges.map(
+    edge => edge['node']
+  );
 
   const membersWithRoleEdges = data['membersWithRole']['edges'];
   const membersWithRoleSanitized: Array<CMS.Member> = membersWithRoleEdges.map(
