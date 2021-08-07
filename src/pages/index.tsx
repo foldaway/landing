@@ -14,8 +14,8 @@ import Layout from '../layouts/Layout';
 import { getHomePageContent } from '../lib/api';
 
 interface IndexProps {
-  members: CMS.Member[];
-  itemShowcase: CMS.Project[];
+  members: GraphQL.Member[];
+  itemShowcase: GraphQL.Project[];
 }
 
 const HomePage: React.FC<IndexProps> = function(props) {

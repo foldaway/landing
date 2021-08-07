@@ -88,13 +88,13 @@ export async function getHomePageContent() {
   const data = (await fetchAPI(homePageQuery))['organization'];
 
   const itemShowcaseEdges = data['itemShowcase']['items']['edges'];
-  const itemShowcaseSanitized: Array<CMS.Project> = itemShowcaseEdges.map(
+  const itemShowcaseSanitized: Array<GraphQL.Project> = itemShowcaseEdges.map(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (edge: { [x: string]: any }) => edge['node']
   );
 
   const membersWithRoleEdges = data['membersWithRole']['edges'];
-  const membersWithRoleSanitized: Array<CMS.Member> = membersWithRoleEdges.map(
+  const membersWithRoleSanitized: Array<GraphQL.Member> = membersWithRoleEdges.map(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (edge: { [x: string]: any }) => edge['node']
   );
@@ -108,7 +108,7 @@ export async function getHomePageContent() {
 export async function getAllProjects() {
   const data = (await fetchAPI(projectsPageQuery))['organization'];
   const projectsEdges = data['repositories']['edges'];
-  const projectsSanitized: Array<CMS.Project> = projectsEdges.map(
+  const projectsSanitized: Array<GraphQL.Project> = projectsEdges.map(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (edge: { [x: string]: any }) => edge['node']
   );

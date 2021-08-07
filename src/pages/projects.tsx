@@ -8,7 +8,7 @@ import Layout from '../layouts/Layout';
 import { getAllProjects } from '../lib/api';
 
 interface ProjectProps {
-  projects: CMS.Project[];
+  projects: GraphQL.Project[];
 }
 
 const ProjectsPage: React.FC<ProjectProps> = function(props) {
