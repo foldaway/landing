@@ -27,15 +27,7 @@ const HomePage: React.FC<IndexProps> = function(props) {
         <SectionHeading>Featured Projects</SectionHeading>
         {/* showcase pinned repos */}
         {itemShowcase.map((project, index) => (
-          <Project
-            key={project.id}
-            project={{
-              title: project.name,
-              description: project.description || '',
-              url: project.url,
-            }}
-            index={index}
-          />
+          <Project key={project.id} project={project} index={index + 1} />
         ))}
         <SeeMore href="/projects">↙see more projects</SeeMore>
       </Section>
@@ -43,14 +35,7 @@ const HomePage: React.FC<IndexProps> = function(props) {
         <SectionHeading>People</SectionHeading>
         {/* list members */}
         {members.map(member => (
-          <Member
-            key={member.login}
-            member={{
-              name: member.name,
-              avatar: member.avatarUrl,
-              url: member.url,
-            }}
-          />
+          <Member key={member.login} member={member} />
         ))}
       </Section>
       <Section id="about">

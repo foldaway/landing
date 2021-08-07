@@ -21,15 +21,7 @@ const ProjectsPage: React.FC<ProjectProps> = function(props) {
         <SectionHeading>All Projects</SectionHeading>
         {/* list all projects */}
         {projects.map((project, index) => (
-          <Project
-            key={project.id}
-            project={{
-              title: project.name,
-              description: project.description || '',
-              url: project.url,
-            }}
-            index={index}
-          />
+          <Project key={project.id} project={project} index={index + 1} />
         ))}
       </Section>
     </Layout>

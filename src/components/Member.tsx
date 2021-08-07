@@ -36,26 +36,20 @@ const Name = styled.span`
 `;
 
 interface Props {
-  member: {
-    name: string;
-    avatar: string;
-    url: string;
-  };
+  member: GraphQL.Member;
 }
 
 const Member: React.FC<Props> = function(props) {
-  const {
-    member: { name, avatar, url },
-  } = props;
+  const { member } = props;
 
-  if (name == null) {
+  if (member.name == null) {
     return null;
   }
 
   return (
-    <Wrapper href={url}>
-      <Avatar src={avatar} />
-      <Name>{name}</Name>
+    <Wrapper href={member.url}>
+      <Avatar src={member.avatarUrl} />
+      <Name>{member.name}</Name>
     </Wrapper>
   );
 };
