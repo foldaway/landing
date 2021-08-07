@@ -20,7 +20,6 @@ interface IndexProps {
 
 const HomePage: React.FC<IndexProps> = function(props) {
   const { itemShowcase, members } = props;
-
   return (
     <Layout>
       <SEO title="Fourth Class Honours" />

@@ -103,3 +103,17 @@ export async function getHomePageContent() {
     members: membersWithRoleSanitized,
   };
 }
+
+export async function getAllProjects() {
+  const data = (await fetchAPI(projectsPageQuery, { variables: {} }))[
+    'organization'
+  ];
+  const projectsEdges = data['repositories']['edges'];
+  const projectsSanitized: Array<CMS.Project> = projectsEdges.map(
+    edge => edge['node']
+  );
+
+  return {
+    projects: projectsSanitized,
+  }
+}

@@ -47,6 +47,11 @@ const Member: React.FC<Props> = function(props) {
   const {
     member: { name, avatar, url },
   } = props;
+
+  if (name == null) {
+    return null;
+  }
+
   return (
     <Wrapper href={url}>
       <Avatar src={avatar} />
