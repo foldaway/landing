@@ -89,14 +89,12 @@ export async function getHomePageContent() {
 
   const itemShowcaseEdges = data['itemShowcase']['items']['edges'];
   const itemShowcaseSanitized: Array<GraphQL.Project> = itemShowcaseEdges.map(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (edge: { [x: string]: any }) => edge['node']
+    (edge: GraphQL.Edge) => edge['node']
   );
 
   const membersWithRoleEdges = data['membersWithRole']['edges'];
   const membersWithRoleSanitized: Array<GraphQL.Member> = membersWithRoleEdges.map(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (edge: { [x: string]: any }) => edge['node']
+    (edge: GraphQL.Edge) => edge['node']
   );
 
   return {
