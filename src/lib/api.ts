@@ -39,6 +39,7 @@ const homePageQuery =
   `
 query {
   organization(login: "fourthclasshonours") {
+    description
     itemShowcase {
       items(first: 10) {
       	edges {
@@ -87,6 +88,7 @@ query {
 export async function getHomePageContent() {
   const data = (await fetchAPI(homePageQuery))['organization'];
 
+  const description = data['description'];
   const itemShowcaseEdges = data['itemShowcase']['items']['edges'];
   const itemShowcaseSanitized: Array<GraphQL.Project> = itemShowcaseEdges.map(
     (edge: GraphQL.Edge) => edge['node']
@@ -98,6 +100,7 @@ export async function getHomePageContent() {
   );
 
   return {
+    description: description,
     itemShowcase: itemShowcaseSanitized,
     members: membersWithRoleSanitized,
   };

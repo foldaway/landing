@@ -16,10 +16,11 @@ import { getHomePageContent } from '../lib/api';
 interface IndexProps {
   members: GraphQL.Member[];
   itemShowcase: GraphQL.Project[];
+  description: string;
 }
 
 const HomePage: React.FC<IndexProps> = function(props) {
-  const { itemShowcase, members } = props;
+  const { itemShowcase, members, description } = props;
   return (
     <Layout>
       <SEO title="Fourth Class Honours" />
@@ -40,6 +41,8 @@ const HomePage: React.FC<IndexProps> = function(props) {
       </Section>
       <Section id="about">
         <SectionHeading>About</SectionHeading>
+        {/* description from GitHub */}
+        {description && <SectionBody>{description}</SectionBody>}
         <SectionBody>
           Magna enim risus tincidunt pellentesque bibendum at non nibh. Rutrum
           non mauris commodo, eget est, feugiat sit mauris vitae. Velit sed
