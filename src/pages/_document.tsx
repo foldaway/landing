@@ -10,17 +10,29 @@ import { ServerStyleSheet } from 'styled-components';
 
 //@ts-ignore
 export default class MyDocument extends Document {
-  static getInitialProps(ctx: DocumentContext) {
-    const { renderPage } = ctx;
-
+  static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
-    const page = renderPage(App => props =>
-      sheet.collectStyles(<App {...props} />)
-    );
+    const originalRenderPage = ctx.renderPage;
 
-    const styleTags = sheet.getStyleElement();
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
+        });
 
-    return { ...page, styleTags };
+      const initialProps = await Document.getInitialProps(ctx);
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        ),
+      };
+    } finally {
+      sheet.seal();
+    }
   }
 
   render() {
@@ -29,7 +41,6 @@ export default class MyDocument extends Document {
         {
           <Head>
             {/* @ts-ignore */}
-            {this.props.styleTags}
             <link rel="preconnect" href="https://fonts.googleapis.com" />
             <link rel="preconnect" href="https://fonts.gstatic.com" />
             <link
