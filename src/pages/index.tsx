@@ -39,21 +39,13 @@ const HomePage: React.FC<IndexProps> = function(props) {
           <Member key={member.login} member={member} />
         ))}
       </Section>
-      <Section id="about">
-        <SectionHeading>About</SectionHeading>
-        {/* description from GitHub */}
-        {description && <SectionBody>{description}</SectionBody>}
-        <SectionBody>
-          Magna enim risus tincidunt pellentesque bibendum at non nibh. Rutrum
-          non mauris commodo, eget est, feugiat sit mauris vitae. Velit sed
-          augue luctus commodo.
-        </SectionBody>
-        <SectionBody>
-          Felis in ultrices proin in ante turpis pellentesque. In egestas
-          interdum sed tristique turpis. Amet fames porta maecenas mauris vitae
-          aenean habitant. Ac enim sit enim, nisi nec aliquet.
-        </SectionBody>
-      </Section>
+      {description && (
+        <Section id="about">
+          <SectionHeading>About</SectionHeading>
+          {/* description from GitHub */}
+          <SectionBody>{description}</SectionBody>
+        </Section>
+      )}
     </Layout>
   );
 };
@@ -64,5 +56,6 @@ export const getStaticProps: GetStaticProps<IndexProps> = async () => {
   const githubContent = await getHomePageContent();
   return {
     props: githubContent,
+    revalidate: 10,
   };
 };
