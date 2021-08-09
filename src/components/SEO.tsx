@@ -36,7 +36,7 @@ const SEO: React.FC<Props> = function(props) {
       <meta name="og:type" content="website" />
       <meta name="og:image" content={resolve(siteMetadata.siteUrl, 'og.png')} />
       <meta name="og:url" content={siteMetadata.siteUrl} />
-      <meta name="twitter:card" content={metaDescription} />
+      <meta name="twitter:card" content="summary_large_image" />
       <meta
         name="twitter:image"
         content={resolve(siteMetadata.siteUrl, 'og.png')}
