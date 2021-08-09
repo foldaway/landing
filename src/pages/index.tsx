@@ -23,7 +23,7 @@ const HomePage: React.FC<IndexProps> = function(props) {
   const { itemShowcase, members, description } = props;
   return (
     <Layout>
-      <SEO title="Fourth Class Honours" />
+      <SEO title="Fourth Class Honours" description={description} />
       <Section>
         <SectionHeading>Featured Projects</SectionHeading>
         {/* showcase pinned repos */}
