@@ -56,6 +56,6 @@ export const getStaticProps: GetStaticProps<IndexProps> = async () => {
   const githubContent = await getHomePageContent();
   return {
     props: githubContent,
-    revalidate: 10,
+    revalidate: 60 * 60 * 24 * 7, // Revalidate once a week
   };
 };
