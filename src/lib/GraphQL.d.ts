@@ -14,6 +14,8 @@ declare namespace GraphQL {
     created_at: string;
     url: string;
     description?: string;
+    updatedAt: string;
+    isArchived: boolean;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

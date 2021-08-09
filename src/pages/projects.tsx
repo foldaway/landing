@@ -20,9 +20,11 @@ const ProjectsPage: React.FC<ProjectProps> = function(props) {
       <Section>
         <SectionHeading>All Projects</SectionHeading>
         {/* list all projects */}
-        {projects.map((project, index) => (
-          <Project key={project.id} project={project} index={index + 1} />
-        ))}
+        {projects
+          .filter(project => !project.isArchived)
+          .map((project, index) => (
+            <Project key={project.id} project={project} index={index + 1} />
+          ))}
       </Section>
     </Layout>
   );
