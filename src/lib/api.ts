@@ -31,6 +31,8 @@ fragment repoFields on Repository {
   createdAt
   description
   url
+  updatedAt
+  isArchived
 }
 `;
 
@@ -44,8 +46,8 @@ query {
       items(first: 10) {
       	edges {
           node {
-    ... on Repository {
-			...repoFields
+            ... on Repository {
+              ...repoFields
             }
           }
         }
@@ -73,7 +75,7 @@ const projectsPageQuery =
 query {
   organization(login: "fourthclasshonours") {
     createdAt
-    repositories(first: 100, privacy: PUBLIC, orderBy: {direction: ASC, field: NAME}) {
+    repositories(first: 100, privacy: PUBLIC, orderBy: {direction: DESC, field: UPDATED_AT}, isFork: false) {
       edges {
         node {
 					...repoFields
