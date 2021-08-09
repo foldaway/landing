@@ -14,7 +14,7 @@ const SEO: React.FC<Props> = function(props) {
   const { description, title } = props;
   const { siteMetadata } = config;
 
-  const metaDescription = description || siteMetadata.description;
+  const metaDescription = description ?? '';
 
   const jsonLDSchema = {
     '@context': 'https://schema.org',
