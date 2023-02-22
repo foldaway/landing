@@ -1,20 +1,21 @@
 import { Inter } from "@next/font/google";
-import classNames from "classnames";
 import { InferGetStaticPropsType } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import { Octokit } from "octokit";
 
 import { Paragraph } from "@/components/Paragraph";
 import { Section } from "@/components/Section";
+import { User } from "@/components/User";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export default function Home(
   props: InferGetStaticPropsType<typeof getStaticProps>
 ) {
-  console.log(props);
-
   return (
     <>
       <Head>
@@ -23,7 +24,9 @@ export default function Home(
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${inter.className} h-full w-full overflow-y-auto`}>
+      <main
+        className={`${inter.variable} h-full w-full overflow-y-auto font-sans`}
+      >
         <div className="m-auto max-w-screen-sm py-32 px-8">
           <span className="block pb-4 text-5xl text-black dark:text-white">
             ⌅
@@ -47,24 +50,9 @@ export default function Home(
           </Section>
 
           <Section heading="People">
-            <div className="flex flex-wrap items-start gap-4">
-              {props.users.map((user) => (
-                <div
-                  key={user.id}
-                  className={classNames(
-                    "flex items-center gap-x-2 rounded-full",
-                    "text-neutral-900 dark:text-neutral-50"
-                  )}
-                >
-                  <Image
-                    src={user.avatar_url}
-                    alt={user.login}
-                    height={28}
-                    width={28}
-                    className="rounded-full"
-                  />
-                  {user.name}
-                </div>
+            <div className="flex flex-wrap items-start gap-y-4 gap-x-3">
+              {props.users.map((userObj) => (
+                <User key={userObj.id} user={userObj} />
               ))}
             </div>
           </Section>
