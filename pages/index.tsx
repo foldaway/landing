@@ -1,6 +1,8 @@
 import { Inter } from "@next/font/google";
+import classNames from "classnames";
 import { InferGetStaticPropsType } from "next";
 import Head from "next/head";
+import Image from "next/image";
 import { Octokit } from "octokit";
 
 import { Paragraph } from "@/components/Paragraph";
@@ -54,6 +56,28 @@ export default function Home(
               {props.users.map((userObj) => (
                 <User key={userObj.id} user={userObj} />
               ))}
+            </div>
+          </Section>
+
+          <Section heading="Projects">
+            <div className="flex flex-col">
+              <div className="flex flex-col items-start gap-1">
+                <a
+                  className={classNames(
+                    "inline-block rounded-md line-clamp-1",
+                    "transition-colors hover:bg-neutral-700/50",
+                    "hover:-my-1/2 hover:py-1/2 hover:-mx-1.5 hover:px-1.5"
+                  )}
+                  href="https://github.com/fourthclasshonours/sg-scraper"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  sg-scraper ↗
+                </a>
+                <p className="text-neutral-400">
+                  Scripts to scrape metadata of places in Singapore.
+                </p>
+              </div>
             </div>
           </Section>
         </div>

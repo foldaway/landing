@@ -36,12 +36,12 @@ export function User(props: UserProps) {
           width={24}
           className="rounded-full"
         />
-        <span className="flex items-start gap-x-1">
+        <span className="flex items-start">
           <span className="group-hover:underline group-focus:underline">
             {props.user.name}
           </span>
-          <span className="text-sm opacity-0 transition-opacity group-hover:opacity-100 group-focus:opacity-100">
-            ↗
+          <span className="opacity-0 transition-opacity group-hover:opacity-100 group-focus:opacity-100">
+            &nbsp;↗
           </span>
         </span>
       </div>
