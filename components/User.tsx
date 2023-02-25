@@ -2,13 +2,7 @@ import classNames from "classnames";
 import Image from "next/image";
 
 type UserProps = {
-  user: {
-    blog: string | null;
-    html_url: string;
-    avatar_url: string;
-    login: string;
-    name: string | null;
-  };
+  user: GitHub.GraphQL.API.User;
 };
 
 export function User(props: UserProps) {
@@ -16,9 +10,9 @@ export function User(props: UserProps) {
     <a
       className="group"
       href={
-        props.user.blog !== null && props.user.blog !== ""
-          ? props.user.blog
-          : props.user.html_url
+        props.user.websiteUrl !== null && props.user.websiteUrl !== ""
+          ? props.user.websiteUrl
+          : props.user.url
       }
       target="_blank"
       rel="noreferrer"
@@ -30,7 +24,7 @@ export function User(props: UserProps) {
         )}
       >
         <Image
-          src={props.user.avatar_url}
+          src={props.user.avatarUrl}
           alt={props.user.login}
           height={24}
           width={24}
