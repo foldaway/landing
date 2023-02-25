@@ -55,55 +55,66 @@ export default function Home(
 
           <Section heading="People">
             <div className="flex flex-wrap items-start gap-y-4 gap-x-3">
-              {props.users.map((userObj) => (
-                <User key={userObj.id} user={userObj} />
-              ))}
+              {props.organization.membersWithRole.edges
+                .filter((edge) => !edge.node.login.endsWith("-bot"))
+                .map((edge) => (
+                  <User key={edge.cursor} user={edge.node} />
+                ))}
             </div>
           </Section>
 
           <Section heading="Projects">
-            <div className="flex flex-col">
-              <div className="group transition-transform hover:-translate-y-0.5">
-                <a
-                  className={classNames(
-                    "flex justify-between rounded-md py-4 px-6",
-                    "transition-shadow dark:transition-colors",
-                    // Background
-                    "bg-white dark:bg-gradient-to-b dark:from-neutral-700 dark:to-neutral-800",
-                    // Light mode: shadows
-                    "shadow-skeuo group-hover:shadow-skeuo-lg dark:shadow-none",
-                    // Dark mode: borders
-                    "dark:border dark:border-neutral-600 dark:group-hover:border-neutral-500"
-                  )}
-                  href="https://github.com/fourthclasshonours/sg-scraper"
-                  target="_blank"
-                  rel="noreferrer"
+            <div className="flex flex-col gap-y-3">
+              {props.organization.pinnedItems.edges.map((pinnableItemEdge) => (
+                <div
+                  key={pinnableItemEdge.cursor}
+                  className="group transition-transform hover:-translate-y-0.5"
                 >
-                  <div className="flex flex-col gap-1">
-                    <h3>
-                      <span className="group-hover:underline">sg-scraper</span>
-                      <span className="opacity-0 transition-opacity group-hover:opacity-100 group-focus:opacity-100">
-                        &nbsp;↗
-                      </span>
-                    </h3>
-                    <p className="text-sm text-neutral-400 line-clamp-1">
-                      Scripts to scrape metadata of places in Singapore
-                    </p>
-                  </div>
-                  <div className="flex items-center">
-                    {props.users.map((userObj) => (
-                      <Image
-                        key={userObj.id}
-                        src={userObj.avatar_url}
-                        alt={userObj.login}
-                        height={24}
-                        width={24}
-                        className="-ml-1 rounded-full first:ml-0"
-                      />
-                    ))}
-                  </div>
-                </a>
-              </div>
+                  <a
+                    className={classNames(
+                      "flex justify-between rounded-md py-4 px-6",
+                      "transition-shadow dark:transition-colors",
+                      // Background
+                      "bg-white dark:bg-gradient-to-b dark:from-neutral-700 dark:to-neutral-800",
+                      // Light mode: shadows
+                      "shadow-skeuo group-hover:shadow-skeuo-lg dark:shadow-none",
+                      // Dark mode: borders
+                      "dark:border dark:border-neutral-600 dark:group-hover:border-neutral-500"
+                    )}
+                    href={pinnableItemEdge.node.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <div className="flex flex-col gap-1">
+                      <h3>
+                        <span className="group-hover:underline">
+                          {pinnableItemEdge.node.name}
+                        </span>
+                        <span className="opacity-0 transition-opacity group-hover:opacity-100 group-focus:opacity-100">
+                          &nbsp;↗
+                        </span>
+                      </h3>
+                      <p className="text-sm text-neutral-400 line-clamp-1">
+                        {pinnableItemEdge.node.description}
+                      </p>
+                    </div>
+                    <div className="flex items-center">
+                      {props.repoContributorsMap[
+                        pinnableItemEdge.node.name
+                      ].map((user) => (
+                        <Image
+                          key={user.login}
+                          src={user.avatarUrl}
+                          alt={user.login}
+                          height={24}
+                          width={24}
+                          className="-ml-1 rounded-full first:ml-0"
+                        />
+                      ))}
+                    </div>
+                  </a>
+                </div>
+              ))}
             </div>
           </Section>
 
@@ -120,24 +131,106 @@ export default function Home(
 export async function getStaticProps() {
   const octokit = new Octokit({ auth: process.env.GITHUB_API_TOKEN });
 
-  const orgResponse = await octokit.request("GET /orgs/{org}/members", {
-    org: "fourthclasshonours",
-  });
+  const { organization } = await octokit.graphql<{
+    organization: GitHub.GraphQL.API.Organization;
+  }>(`
+    query PinnedReposQuery {
+      organization(login: "fourthclasshonours") {
+        membersWithRole(first: 50) {
+          edges {
+            node {
+              name
+              login
+              avatarUrl
+              websiteUrl
+              url
+            }
+            cursor
+          }
+        }
+        pinnedItems(types: [REPOSITORY], first: 10) {
+          edges {
+            node {
+              ... on Repository {
+                name
+                description
+                url
+              }
+            }
+            cursor
+          }
+        }
+      }
+    }
+  `);
 
-  const users = [];
-  for (const { login } of orgResponse.data) {
-    // Guard: Ignore bots
-    if (login.endsWith("-bot")) continue;
+  /**
+   * Map of org member login (a.k.a. handle) to {@link GitHub.GraphQL.API.User}
+   */
+  const orgMembersMap: Record<string, GitHub.GraphQL.API.User> = {};
 
-    const userResponse = await octokit.request("GET /users/{username}", {
-      username: login,
-    });
-    users.push(userResponse.data);
+  for (const orgMemberEdge of organization.membersWithRole.edges) {
+    orgMembersMap[orgMemberEdge.node.login] = orgMemberEdge.node;
+  }
+
+  /**
+   * Map of repo name to its contributors
+   */
+  const repoContributorsMap: Record<string, GitHub.GraphQL.API.User[]> = {};
+
+  for (const pinnableItemEdge of organization.pinnedItems.edges) {
+    const repo = pinnableItemEdge.node.name;
+
+    /**
+     * Use REST API to query for {@link repo}'s contributors
+     */
+    const contributorsResponse = await octokit.request(
+      "GET /repos/{owner}/{repo}/contributors",
+      {
+        owner: "fourthclasshonours",
+        repo,
+      }
+    );
+
+    const repoContributors: GitHub.GraphQL.API.User[] = [];
+
+    for (const contributor of contributorsResponse.data) {
+      /**
+       * Filter out non-user contributors such as dependabot
+       */
+      if (contributor.type !== "User") {
+        continue;
+      }
+
+      /**
+       * Attempt to retrieve GraphQL user information from Organisation members
+       */
+      const orgMember = orgMembersMap[contributor.login!];
+
+      if (orgMember != null) {
+        repoContributors.push(orgMember);
+        continue;
+      }
+
+      /**
+       * Put together a shell GraphQL user for outside contributor
+       */
+      repoContributors.push({
+        login: contributor.login!,
+        name: contributor.name ?? contributor.login!,
+        avatarUrl: contributor.avatar_url!,
+        websiteUrl: contributor.url!,
+        url: "",
+      });
+    }
+
+    repoContributorsMap[repo] = repoContributors;
   }
 
   return {
     props: {
-      users: users,
+      organization,
+      repoContributorsMap,
     },
   };
 }
