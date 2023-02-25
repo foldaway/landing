@@ -1,12 +1,10 @@
 import { Inter } from "@next/font/google";
-import classNames from "classnames";
 import { InferGetStaticPropsType } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import { useTheme } from "next-themes";
 import { Octokit } from "octokit";
 
 import { Paragraph } from "@/components/Paragraph";
+import Project from "@/components/Project";
 import { Section } from "@/components/Section";
 import { User } from "@/components/User";
 
@@ -19,7 +17,6 @@ const inter = Inter({
 export default function Home(
   props: InferGetStaticPropsType<typeof getStaticProps>
 ) {
-  const { setTheme } = useTheme();
   return (
     <>
       <Head>
@@ -66,61 +63,15 @@ export default function Home(
           <Section heading="Projects">
             <div className="flex flex-col gap-y-3">
               {props.organization.pinnedItems.edges.map((pinnableItemEdge) => (
-                <div
+                <Project
                   key={pinnableItemEdge.cursor}
-                  className="group transition-transform hover:-translate-y-0.5"
-                >
-                  <a
-                    className={classNames(
-                      "flex justify-between rounded-md py-4 px-6",
-                      "transition-shadow dark:transition-colors",
-                      // Background
-                      "bg-white dark:bg-gradient-to-b dark:from-neutral-700 dark:to-neutral-800",
-                      // Light mode: shadows
-                      "shadow-skeuo group-hover:shadow-skeuo-lg dark:shadow-none",
-                      // Dark mode: borders
-                      "dark:border dark:border-neutral-600 dark:group-hover:border-neutral-500"
-                    )}
-                    href={pinnableItemEdge.node.url}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <div className="flex flex-col gap-1">
-                      <h3>
-                        <span className="group-hover:underline">
-                          {pinnableItemEdge.node.name}
-                        </span>
-                        <span className="opacity-0 transition-opacity group-hover:opacity-100 group-focus:opacity-100">
-                          &nbsp;↗
-                        </span>
-                      </h3>
-                      <p className="text-sm text-neutral-400 line-clamp-1">
-                        {pinnableItemEdge.node.description}
-                      </p>
-                    </div>
-                    <div className="flex items-center">
-                      {props.repoContributorsMap[
-                        pinnableItemEdge.node.name
-                      ].map((user) => (
-                        <Image
-                          key={user.login}
-                          src={user.avatarUrl}
-                          alt={user.login}
-                          height={24}
-                          width={24}
-                          className="-ml-1 rounded-full first:ml-0"
-                        />
-                      ))}
-                    </div>
-                  </a>
-                </div>
+                  project={pinnableItemEdge}
+                  contributors={
+                    props.repoContributorsMap[pinnableItemEdge.node.name]
+                  }
+                />
               ))}
             </div>
-          </Section>
-
-          <Section heading="Debug">
-            <button onClick={() => setTheme("light")}>Light</button>
-            <button onClick={() => setTheme("dark")}>Dark</button>
           </Section>
         </div>
       </main>
