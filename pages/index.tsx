@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import { useTheme } from "next-themes";
 import { Octokit } from "octokit";
 
 import { Paragraph } from "@/components/Paragraph";
@@ -18,6 +19,7 @@ const inter = Inter({
 export default function Home(
   props: InferGetStaticPropsType<typeof getStaticProps>
 ) {
+  const { setTheme } = useTheme();
   return (
     <>
       <Head>
@@ -61,24 +63,53 @@ export default function Home(
 
           <Section heading="Projects">
             <div className="flex flex-col">
-              <div className="flex flex-col items-start gap-1">
+              <div className="group transition-transform hover:-translate-y-0.5">
                 <a
                   className={classNames(
-                    "inline-block rounded-md line-clamp-1",
-                    "transition-colors hover:bg-neutral-700/50",
-                    "hover:-my-1/2 hover:py-1/2 hover:-mx-1.5 hover:px-1.5"
+                    "flex justify-between rounded-md py-4 px-6",
+                    "transition-shadow dark:transition-colors",
+                    // Background
+                    "bg-white dark:bg-gradient-to-b dark:from-neutral-700 dark:to-neutral-800",
+                    // Light mode: shadows
+                    "shadow-skeuo group-hover:shadow-skeuo-lg dark:shadow-none",
+                    // Dark mode: borders
+                    "dark:border dark:border-neutral-600 dark:group-hover:border-neutral-500"
                   )}
                   href="https://github.com/fourthclasshonours/sg-scraper"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  sg-scraper ↗
+                  <div className="flex flex-col gap-1">
+                    <h3>
+                      <span className="group-hover:underline">sg-scraper</span>
+                      <span className="opacity-0 transition-opacity group-hover:opacity-100 group-focus:opacity-100">
+                        &nbsp;↗
+                      </span>
+                    </h3>
+                    <p className="text-sm text-neutral-400 line-clamp-1">
+                      Scripts to scrape metadata of places in Singapore
+                    </p>
+                  </div>
+                  <div className="flex items-center">
+                    {props.users.map((userObj) => (
+                      <Image
+                        key={userObj.id}
+                        src={userObj.avatar_url}
+                        alt={userObj.login}
+                        height={24}
+                        width={24}
+                        className="-ml-1 rounded-full first:ml-0"
+                      />
+                    ))}
+                  </div>
                 </a>
-                <p className="text-neutral-400">
-                  Scripts to scrape metadata of places in Singapore.
-                </p>
               </div>
             </div>
+          </Section>
+
+          <Section heading="Debug">
+            <button onClick={() => setTheme("light")}>Light</button>
+            <button onClick={() => setTheme("dark")}>Dark</button>
           </Section>
         </div>
       </main>

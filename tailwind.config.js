@@ -1,4 +1,4 @@
-const { fontFamily } = require("tailwindcss/defaultTheme");
+const { fontFamily, boxShadow } = require("tailwindcss/defaultTheme");
 const plugin = require("tailwindcss/plugin");
 
 /** @type {import('tailwindcss').Config} */
@@ -12,6 +12,10 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["var(--font-inter)", ...fontFamily.sans],
+      },
+      boxShadow: {
+        skeuo: `0 0 0 1px rgb(0, 0, 0, .05), 0 1px 0 0 rgb(0, 0, 0, .1), ${boxShadow.DEFAULT}`,
+        "skeuo-lg": `0 0 0 1px rgb(0, 0, 0, .05), 0 1px 0 0 rgb(0, 0, 0, .1), ${boxShadow.lg}`,
       },
       keyframes: {
         enter: {
