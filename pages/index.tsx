@@ -1,8 +1,10 @@
 import { Inter } from "@next/font/google";
+import classNames from "classnames";
 import { InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import { Octokit } from "octokit";
 
+import { ArrowRightIcon } from "@/components/icons/ArrowRightIcon";
 import { Paragraph } from "@/components/Paragraph";
 import Project from "@/components/Project";
 import { Section } from "@/components/Section";
@@ -29,7 +31,7 @@ export default function Home(
       <main
         className={`${inter.variable} h-full w-full overflow-y-auto font-sans`}
       >
-        <div className="m-auto max-w-screen-sm py-32 px-8">
+        <div className="m-auto max-w-screen-sm px-8 pt-32">
           <div className="flex items-end justify-between">
             <div>
               <span className="block pb-4 text-5xl text-black dark:text-white">
@@ -77,8 +79,24 @@ export default function Home(
                   }
                 />
               ))}
+              <div className="pt-4 text-center">
+                <a
+                  href=""
+                  className={classNames(
+                    "inline-flex items-center gap-x-2 rounded-xl px-4 py-2 shadow ",
+                    "text-white dark:text-black",
+                    "bg-black hover:bg-neutral-800 dark:bg-white dark:hover:bg-neutral-100"
+                  )}
+                >
+                  More projects
+                  <ArrowRightIcon />
+                </a>
+              </div>
             </div>
           </Section>
+          <footer className="flex justify-center pt-32 pb-16 text-xl text-neutral-400 dark:text-neutral-500">
+            ⌅
+          </footer>
         </div>
       </main>
     </>

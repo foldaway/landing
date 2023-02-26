@@ -30,13 +30,8 @@ export function User(props: UserProps) {
           width={24}
           className="rounded-full"
         />
-        <span className="flex items-start">
-          <span className="group-hover:underline group-focus:underline">
-            {props.user.name}
-          </span>
-          <span className="opacity-0 transition-opacity group-hover:opacity-100 group-focus:opacity-100">
-            &nbsp;↗
-          </span>
+        <span className="group-hover:underline group-focus:underline">
+          {props.user.name}
         </span>
       </div>
     </a>

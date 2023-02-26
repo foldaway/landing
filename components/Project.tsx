@@ -44,7 +44,7 @@ export default function Project(props: ProjectProps) {
         </div>
         <div className="flex items-center">
           {props.contributors.map((contributor) => (
-            <Tooltip key={contributor.login} content={contributor.login}>
+            <Tooltip key={contributor.login} content={contributor.name}>
               <Image
                 src={contributor.avatarUrl}
                 alt={contributor.login}
