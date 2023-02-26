@@ -14,7 +14,28 @@ module.exports = {
         sans: ["var(--font-inter)", ...fontFamily.sans],
       },
       boxShadow: {
+        "skeuo-toggle-group": `
+        inset 0 1px 2px 0 rgb(0, 0, 0, .1),
+        inset 0 0 8px 0 rgb(0, 0, 0, .05),
+          0 0 1px 1px rgb(255, 255, 255, .5)
+        `,
+        "skeuo-toggle-group-dark": `
+        inset 0 1px 2px 0 rgb(0, 0, 0, .5),
+        inset 0 0 8px 0 rgb(255, 255, 255, .05),
+        0 0 1px 1px rgb(0, 0, 0, .05)
+      `,
+        "skeuo-toggle": `
+          inset 0 0 1px 1px rgb(255, 255, 255, .5),
+          0 1px 1px 0 rgb(0, 0, 0, .05),
+          0 1px 2px 0 rgb(0, 0, 0, .3)
+        `,
+        "skeuo-toggle-dark": `
+          inset 0 0 1px 1px rgb(255, 255, 255, .05),
+          0 1px 1px 0 rgb(0, 0, 0, .05),
+          0 1px 2px 0 rgb(0, 0, 0, .3)
+        `,
         skeuo: `0 0 0 1px rgb(0, 0, 0, .05), 0 1px 0 0 rgb(0, 0, 0, .1), ${boxShadow.DEFAULT}`,
+        "skeuo-md": `0 0 0 1px rgb(0, 0, 0, .05), 0 1px 0 0 rgb(0, 0, 0, .1), ${boxShadow.md}`,
         "skeuo-lg": `0 0 0 1px rgb(0, 0, 0, .05), 0 1px 0 0 rgb(0, 0, 0, .1), ${boxShadow.lg}`,
       },
       keyframes: {

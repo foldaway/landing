@@ -6,6 +6,7 @@ import { Octokit } from "octokit";
 import { Paragraph } from "@/components/Paragraph";
 import Project from "@/components/Project";
 import { Section } from "@/components/Section";
+import ThemePicker from "@/components/ThemePicker";
 import { User } from "@/components/User";
 
 const inter = Inter({
@@ -29,12 +30,17 @@ export default function Home(
         className={`${inter.variable} h-full w-full overflow-y-auto font-sans`}
       >
         <div className="m-auto max-w-screen-sm py-32 px-8">
-          <span className="block pb-4 text-5xl text-black dark:text-white">
-            ⌅
-          </span>
-          <h1 className="font-medium text-neutral-900 dark:text-neutral-50">
-            Foldaway
-          </h1>
+          <div className="flex items-end justify-between">
+            <div>
+              <span className="block pb-4 text-5xl text-black dark:text-white">
+                ⌅
+              </span>
+              <h1 className="font-medium text-neutral-900 dark:text-neutral-50">
+                Foldaway
+              </h1>
+            </div>
+            <ThemePicker />
+          </div>
 
           <Section heading="About">
             <Paragraph>
