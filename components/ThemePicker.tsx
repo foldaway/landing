@@ -29,7 +29,7 @@ function ThemePickerToggle(props: ThemeToggleProps) {
               // Shadows
               " shadow-skeuo-toggle dark:shadow-skeuo-toggle-dark"
             )
-          : "text-neutral-400 hover:text-neutral-900 dark:text-neutral-500"
+          : "text-neutral-400 hover:text-neutral-900 dark:text-neutral-500 hover:dark:text-neutral-100"
       )}
     >
       <Icon />
