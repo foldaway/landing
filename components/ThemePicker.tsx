@@ -23,13 +23,13 @@ function ThemePickerToggle(props: ThemeToggleProps) {
         "flex h-7 w-7 items-center justify-center rounded transition-all",
         props.active
           ? classNames(
-              `text-neutral-900 dark:text-neutral-100`,
+              "text-neutral-900 dark:text-neutral-100",
               // Background
-              `bg-gradient-to-b from-white via-white to-neutral-100 dark:from-neutral-700 dark:via-neutral-700 dark:to-neutral-800`,
+              "bg-gradient-to-b from-white via-white to-neutral-100 dark:from-neutral-700 dark:via-neutral-700 dark:to-neutral-800",
               // Shadows
-              ` shadow-skeuo-toggle dark:shadow-skeuo-toggle-dark`
+              " shadow-skeuo-toggle dark:shadow-skeuo-toggle-dark"
             )
-          : "text-neutral-400 dark:text-neutral-500"
+          : "text-neutral-400 hover:text-neutral-900 dark:text-neutral-500"
       )}
     >
       <Icon />

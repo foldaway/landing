@@ -42,7 +42,7 @@ export default function Project(props: ProjectProps) {
             {props.project.node.description}
           </p>
         </div>
-        <div className="flex items-center">
+        <div className="hidden shrink-0 items-center sm:flex">
           {props.contributors.map((contributor) => (
             <Tooltip key={contributor.login} content={contributor.name}>
               <Image

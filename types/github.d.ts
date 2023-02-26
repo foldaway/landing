@@ -1,5 +1,6 @@
 declare namespace GitHub.GraphQL.API {
   interface Organization {
+    url: string;
     membersWithRole: OrganizationMemberConnection;
     pinnedItems: PinnableItemConnection;
   }

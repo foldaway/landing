@@ -31,7 +31,7 @@ export default function Home(
       <main
         className={`${inter.variable} h-full w-full overflow-y-auto font-sans`}
       >
-        <div className="m-auto max-w-screen-sm px-8 pt-32">
+        <div className="m-auto max-w-screen-sm px-8 pt-12 sm:pt-32">
           <div className="flex items-end justify-between">
             <div>
               <span className="block pb-4 text-5xl text-black dark:text-white">
@@ -81,7 +81,9 @@ export default function Home(
               ))}
               <div className="pt-4 text-center">
                 <a
-                  href=""
+                  href={props.organization.url}
+                  target="_blank"
+                  rel="noreferrer"
                   className={classNames(
                     "inline-flex items-center gap-x-2 rounded-xl px-4 py-2 shadow ",
                     "text-white dark:text-black",
@@ -94,7 +96,7 @@ export default function Home(
               </div>
             </div>
           </Section>
-          <footer className="flex justify-center pt-32 pb-16 text-xl text-neutral-400 dark:text-neutral-500">
+          <footer className="flex justify-center pt-12 pb-16 text-xl text-neutral-400 dark:text-neutral-500 sm:pt-32">
             ⌅
           </footer>
         </div>
@@ -111,6 +113,7 @@ export async function getStaticProps() {
   }>(`
     query PinnedReposQuery {
       organization(login: "fourthclasshonours") {
+        url
         membersWithRole(first: 50) {
           edges {
             node {

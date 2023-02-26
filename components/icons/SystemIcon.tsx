@@ -7,9 +7,9 @@ export function SystemIcon() {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className="pointer-events-none"
     >
       <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
