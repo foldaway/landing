@@ -106,13 +106,15 @@ export default function Home(
 }
 
 export async function getStaticProps() {
+  if (process.env.NEXT_PUBLIC_ORG_NAME === undefined) return;
+
   const octokit = new Octokit({ auth: process.env.GITHUB_API_TOKEN });
 
   const { organization } = await octokit.graphql<{
     organization: GitHub.GraphQL.API.Organization;
   }>(`
     query PinnedReposQuery {
-      organization(login: "fourthclasshonours") {
+      organization(login: "${process.env.NEXT_PUBLIC_ORG_NAME}") {
         url
         membersWithRole(first: 50) {
           edges {
@@ -165,7 +167,7 @@ export async function getStaticProps() {
     const contributorsResponse = await octokit.request(
       "GET /repos/{owner}/{repo}/contributors",
       {
-        owner: "fourthclasshonours",
+        owner: process.env.NEXT_PUBLIC_ORG_NAME,
         repo,
       }
     );
@@ -176,9 +178,7 @@ export async function getStaticProps() {
       /**
        * Filter out non-user contributors such as dependabot
        */
-      if (contributor.type !== "User") {
-        continue;
-      }
+      if (contributor.type !== "User") continue;
 
       /**
        * Attempt to retrieve GraphQL user information from Organisation members
