@@ -5,6 +5,7 @@ import Head from "next/head";
 import { Octokit } from "octokit";
 
 import { ArrowRightIcon } from "@/components/icons/ArrowRightIcon";
+import { Logo } from "@/components/logo/Logo";
 import { Paragraph } from "@/components/Paragraph";
 import Project from "@/components/Project";
 import { Section } from "@/components/Section";
@@ -32,17 +33,15 @@ export default function Home(
         className={`${inter.variable} h-full w-full overflow-y-auto font-sans`}
       >
         <div className="m-auto max-w-screen-sm px-8 pt-12 sm:pt-32">
-          <div className="flex items-end justify-between">
-            <div>
-              <span className="block pb-4 text-5xl text-black dark:text-white">
-                ⌅
-              </span>
+          <nav className="flex items-end justify-between">
+            <div className="flex flex-col gap-y-4">
+              <Logo />
               <h1 className="font-medium text-neutral-900 dark:text-neutral-50">
                 Foldaway
               </h1>
             </div>
             <ThemePicker />
-          </div>
+          </nav>
 
           <Section heading="About">
             <Paragraph>
@@ -96,8 +95,9 @@ export default function Home(
               </div>
             </div>
           </Section>
-          <footer className="flex justify-center pt-12 pb-16 text-xl text-neutral-400 dark:text-neutral-500 sm:pt-32">
-            ⌅
+
+          <footer className="flex justify-center pt-12 pb-16 text-neutral-400 dark:text-neutral-500 sm:pt-32">
+            <Logo width={16} height={16} />
           </footer>
         </div>
       </main>
