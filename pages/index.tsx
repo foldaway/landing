@@ -26,9 +26,63 @@ export default function Home(
       <Head>
         <title>Foldaway</title>
         <meta name="description" content="Pursuing pointlessness" />
+
+        {/* Open graph */}
+        <meta property="og:title" content="Foldaway" />
+        <meta property="og:description" content="Pursuing pointlessness" />
+        <meta
+          property="og:image"
+          content={`${
+            process.env.VERCEL_URL ? "https://" + process.env.VERCEL_URL : ""
+          }/og.png`}
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Foldaway" />
+        <meta
+          property="og:url"
+          content={
+            process.env.VERCEL_URL ? "https://" + process.env.VERCEL_URL : ""
+          }
+        />
+
+        {/* twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Foldaway" />
+        <meta name="twitter:description" content="Pursuing pointlessness" />
+        <meta
+          name="twitter:image"
+          content={`${
+            process.env.VERCEL_URL ? "https://" + process.env.VERCEL_URL : ""
+          }/og.png`}
+        />
+
+        {/* Favicon */}
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff" />
+
+        {/* Others */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <main
         className={`${inter.variable} h-full w-full overflow-y-auto font-sans`}
       >
