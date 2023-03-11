@@ -37,6 +37,7 @@ module.exports = {
         skeuo: `0 0 0 1px rgb(0, 0, 0, .05), 0 1px 0 0 rgb(0, 0, 0, .1), ${boxShadow.DEFAULT}`,
         "skeuo-md": `0 0 0 1px rgb(0, 0, 0, .05), 0 1px 0 0 rgb(0, 0, 0, .1), ${boxShadow.md}`,
         "skeuo-lg": `0 0 0 1px rgb(0, 0, 0, .05), 0 1px 0 0 rgb(0, 0, 0, .1), ${boxShadow.lg}`,
+        "skeuo-dark": `0 0 0 1px rgb(0, 0, 0, .8), inset 0 0 2px 1px rgb(255, 255, 255, .05), ${boxShadow.DEFAULT}`,
       },
       keyframes: {
         enter: {

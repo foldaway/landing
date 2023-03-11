@@ -138,13 +138,16 @@ export default function Home(
                   target="_blank"
                   rel="noreferrer"
                   className={classNames(
+                    "group",
                     "inline-flex items-center gap-x-2 rounded-xl px-4 py-2 shadow ",
                     "text-white dark:text-black",
                     "bg-black hover:bg-neutral-800 dark:bg-white dark:hover:bg-neutral-100"
                   )}
                 >
                   More projects
-                  <ArrowRightIcon />
+                  <span className="transition-transform group-hover:translate-x-0.5">
+                    <ArrowRightIcon />
+                  </span>
                 </a>
               </div>
             </div>

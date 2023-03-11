@@ -19,11 +19,11 @@ export default function Project(props: ProjectProps) {
           "flex justify-between rounded-md py-4 px-6",
           "transition-shadow dark:transition-colors",
           // Background
-          "bg-white dark:bg-gradient-to-b dark:from-neutral-700 dark:to-neutral-800",
-          // Light mode: shadows
-          "shadow-skeuo group-hover:shadow-skeuo-lg dark:shadow-none",
-          // Dark mode: borders
-          "border border-transparent dark:border-neutral-600 dark:group-hover:border-neutral-500"
+          "bg-white dark:bg-neutral-800",
+          // Shadows
+          "shadow-skeuo group-hover:shadow-skeuo-lg dark:!shadow-skeuo-dark",
+          // Border
+          "border border-transparent dark:border-neutral-700 dark:group-hover:border-neutral-500"
         )}
         href={props.project.node.url}
         target="_blank"

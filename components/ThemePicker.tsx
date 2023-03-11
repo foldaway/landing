@@ -27,7 +27,7 @@ function ThemePickerToggle(props: ThemeToggleProps) {
               // Background
               "bg-gradient-to-b from-white via-white to-neutral-100 dark:from-neutral-700 dark:via-neutral-700 dark:to-neutral-800",
               // Shadows
-              " shadow-skeuo-toggle dark:shadow-skeuo-toggle-dark"
+              "shadow-skeuo-toggle dark:shadow-skeuo-toggle-dark"
             )
           : "text-neutral-400 hover:text-neutral-900 dark:text-neutral-500 hover:dark:text-neutral-100"
       )}
