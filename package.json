@@ -2,7 +2,7 @@
   "name": "next-base",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:fourthclasshonours/landing.git",
+  "repository": "git@github.com:foldaway/landing.git",
   "license": "UNLICENSED",
   "devDependencies": {
     "@svgr/webpack": "^5.5.0",

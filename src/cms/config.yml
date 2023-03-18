@@ -1,7 +1,7 @@
 backend:
   name: github
   branch: main
-  repo: fourthclasshonours/landing
+  repo: foldaway/landing
   auth_endpoint: api/cms-auth
   use_graphql: true
 

@@ -40,7 +40,7 @@ const homePageQuery =
   repoFields +
   `
 query {
-  organization(login: "fourthclasshonours") {
+  organization(login: "foldaway") {
     description
     itemShowcase {
       items(first: 10) {
@@ -73,7 +73,7 @@ const projectsPageQuery =
   repoFields +
   `
 query {
-  organization(login: "fourthclasshonours") {
+  organization(login: "foldaway") {
     createdAt
     repositories(first: 100, privacy: PUBLIC, orderBy: {direction: DESC, field: UPDATED_AT}, isFork: false) {
       edges {
