@@ -79,6 +79,21 @@ export default function Home(
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="theme-color" content="#ffffff" />
 
+        {/* Schema.org */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Foldaway",
+              url: process.env.VERCEL_URL
+                ? "https://" + process.env.VERCEL_URL
+                : "",
+            }),
+          }}
+        />
+
         {/* Others */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
